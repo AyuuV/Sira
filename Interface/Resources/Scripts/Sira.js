@@ -1,13 +1,5 @@
 var Sira = Sira = Sira || {};
 
-Sira.Data = Sira.Data = Sira.Data || {};
-
-Sira.Data.DefaultStyle = {
-	'Main' : {
-		'background-color' : 'rgba(0,128,255,1)'
-	}
-};
-
 Sira.Create = function(ElementType,ElementParent,Identifier,TextContent,StyleMask) {
 	if(!Sira.Element(Identifier)) {
 		var NewElement = document.createElement(ElementType);
@@ -25,12 +17,26 @@ Sira.Element = function(ElementIdentifier) {
 	else if(typeof(ElementIdentifier)==='number') { return document.getElementById(ElementIdentifier.toString()); }
 	else { return null; } }
 
-Sira.Initialise = function(ParentElement,StyleData) {
-	var ElementList = [];
-	StyleData = StyleData || localStorage['SiraStyle'] || Sira.Data.DefaultStyle;
-	ElementList['Main'] = Sira.Create('main',ParentElement,'SiraMainSearch',null,StyleData['Main']);
-	return ElementList; }
+Sira.Initialise = function() {
+	var SearchTrigger = Sira.Element('SearchTrigger');
+	window.removeEventListener('load',Sira.Initialise,false);
+	return; }
 
 Sira.MaskStyle = function(SourceStyle,StyleMask) {
 	for(StyleName in StyleMask) { SourceStyle[StyleName] = StyleMask[StyleName]; }
 	return SourceStyle; }
+
+Sira.ParseLocation = function() {
+	if(location.hash.length) {
+		var HashLocation = location.hash.substring(1).split('/',2);
+		var AdministrationDisplay = Sira.Element('AdministrationDisplay');
+		var PreferencesDisplay = Sira.Element('PreferencesDisplay');
+		if(HashLocation[0]==='Administration') { if(!AdministrationDisplay.classList.contains('Active')) { AdministrationDisplay.classList.add('Active'); } }
+		else if(AdministrationDisplay.classList.contains('Active')) { AdministrationDisplay.classList.remove('Active'); }
+		if(HashLocation[0]==='Preferences') { if(!PreferencesDisplay.classList.contains('Active')) { PreferencesDisplay.classList.add('Active'); } }
+		else if(PreferencesDisplay.classList.contains('Active')) { PreferencesDisplay.classList.remove('Active'); }
+	}
+	return; }
+
+window.addEventListener('load',Sira.Initialise,false);
+window.addEventListener('hashchange',Sira.ParseLocation,false);
