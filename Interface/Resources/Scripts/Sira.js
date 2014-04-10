@@ -19,6 +19,7 @@ Sira.Element = function(ElementIdentifier) {
 
 Sira.Initialise = function() {
 	var SearchTrigger = Sira.Element('SearchTrigger');
+	if(!Sira.ParseLocation()) { location.hash = '#Search'; }
 	window.removeEventListener('load',Sira.Initialise,false);
 	return; }
 
@@ -35,8 +36,8 @@ Sira.ParseLocation = function() {
 		else if(AdministrationDisplay.classList.contains('Active')) { AdministrationDisplay.classList.remove('Active'); }
 		if(HashLocation[0]==='Preferences') { if(!PreferencesDisplay.classList.contains('Active')) { PreferencesDisplay.classList.add('Active'); } }
 		else if(PreferencesDisplay.classList.contains('Active')) { PreferencesDisplay.classList.remove('Active'); }
-	}
-	return; }
+		return true; }
+	else { return false; } }
 
 window.addEventListener('load',Sira.Initialise,false);
-window.addEventListener('hashchange',Sira.ParseLocation,false);
+window.addEventListener('hashchange',function() { Sira.ParseLocation(); },false);

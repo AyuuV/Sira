@@ -43,18 +43,18 @@
 	transition: box-shadow 2s, opacity 2s, width 2s;
 	width: 64px;
 	z-index: 100; }
-#SearchDisplay a:first-child { left: 0px; }
+#SearchDisplay a:first-of-type { left: 0px; }
 #SearchDisplay a:hover {
 	box-shadow: 0px 0px 16px rgba(0,0,0,0.25);
 	opacity: 1;
 	transition: box-shadow 2s,opacity 1s, width 1s;
 	width: 96px; }
-#SearchDisplay a:last-child { right: 0px; }
+#SearchDisplay a:last-of-type { right: 0px; }
 
 #SearchTrigger {
 	background-color: rgba(0,0,0,0);
 	border: none;
-	bottom: 64px;
+	bottom: 0px;
 	color:  rgba(88,188,255,1);
 	font-family: sans-serif;
 	font-size: 256px;
