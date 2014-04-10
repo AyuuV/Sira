@@ -19,7 +19,7 @@ Sira.Element = function(ElementIdentifier) {
 
 Sira.Initialise = function() {
 	var SearchTrigger = Sira.Element('SearchTrigger');
-	if(!Sira.ParseLocation()) { location.hash = '#Search'; }
+	Sira.ParseLocation();
 	window.removeEventListener('load',Sira.Initialise,false);
 	return; }
 
@@ -28,16 +28,15 @@ Sira.MaskStyle = function(SourceStyle,StyleMask) {
 	return SourceStyle; }
 
 Sira.ParseLocation = function() {
-	if(location.hash.length) {
-		var HashLocation = location.hash.substring(1).split('/',2);
-		var AdministrationDisplay = Sira.Element('AdministrationDisplay');
-		var PreferencesDisplay = Sira.Element('PreferencesDisplay');
-		if(HashLocation[0]==='Administration') { if(!AdministrationDisplay.classList.contains('Active')) { AdministrationDisplay.classList.add('Active'); } }
-		else if(AdministrationDisplay.classList.contains('Active')) { AdministrationDisplay.classList.remove('Active'); }
-		if(HashLocation[0]==='Preferences') { if(!PreferencesDisplay.classList.contains('Active')) { PreferencesDisplay.classList.add('Active'); } }
-		else if(PreferencesDisplay.classList.contains('Active')) { PreferencesDisplay.classList.remove('Active'); }
-		return true; }
-	else { return false; } }
+	if(!location.hash.length) { location.hash ='#Search'; }
+	var HashLocation = location.hash.substring(1).split('/',2);
+	var AdministrationDisplay = Sira.Element('AdministrationDisplay');
+	var PreferencesDisplay = Sira.Element('PreferencesDisplay');
+	if(HashLocation[0]==='Administration') { if(!AdministrationDisplay.classList.contains('Active')) { AdministrationDisplay.classList.add('Active'); } }
+	else if(AdministrationDisplay.classList.contains('Active')) { AdministrationDisplay.classList.remove('Active'); }
+	if(HashLocation[0]==='Preferences') { if(!PreferencesDisplay.classList.contains('Active')) { PreferencesDisplay.classList.add('Active'); } }
+	else if(PreferencesDisplay.classList.contains('Active')) { PreferencesDisplay.classList.remove('Active'); }
+	return; }
 
 window.addEventListener('load',Sira.Initialise,false);
-window.addEventListener('hashchange',function() { Sira.ParseLocation(); },false);
+window.addEventListener('hashchange',Sira.ParseLocation,false);
