@@ -7,12 +7,15 @@ Sira.Data.DefaultStyle = {
 	'FontFamily' : 'sans-serif'
 };
 
-Sira.Create = function(ElementType,ElementParent,TextContent) {
-	var NewElement = document.createElement(ElementType);
-	if(ElementParent&&(ElementParent instanceof HTMLElement)) { ElementParent.appendChild(NewElement); }
-	else { document.documentElement.appendChild(NewElement); }
-	if(TextContent) { NewElement.textContent = TextContent; }
-	return NewElement; }
+Sira.Create = function(ElementType,ElementParent,TextContent,Identifier) {
+	if(!Sira.Element(Identifier)) {
+		var NewElement = document.createElement(ElementType);
+		if(ElementParent&&(ElementParent instanceof HTMLElement)) { ElementParent.appendChild(NewElement); }
+		else { document.documentElement.appendChild(NewElement); }
+		if(TextContent) { NewElement.textContent = TextContent; }
+		NewElement.id = Identifier;
+		return NewElement; }
+	else { return null; } }
 
 Sira.Element = function(ElementIdentifier) {
 	if(ElementIdentifier instanceof HTMLElement) { return ElementIdentifier; }
@@ -21,6 +24,5 @@ Sira.Element = function(ElementIdentifier) {
 	else { return null; } }
 
 Sira.Initialise = function(StyleJSONData) {
-	StyleJSONData = StyleJSONData || Sira.Data.DefaultStyle;
-
+	StyleJSONData = StyleJSONData || localStorage['SiraStyle'] || Sira.Data.DefaultStyle;
 	return; }
