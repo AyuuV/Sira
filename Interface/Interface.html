@@ -4,7 +4,7 @@
 	<meta charset='utf-8'>
 	<script>
 		var Initialise = function(Event) {
-			Sira.Initialise(null);
+			Sira.Initialise(Sira.Element('Root'),null);
 			window.removeEventListener('load',Initialise,false); }
 		window.addEventListener('load',Initialise,false);
 	</script>
@@ -28,7 +28,7 @@
 	</style>
 	<title>Simple Image Repository Application</title>
 </head>
-<body>
+<body id='Root'>
 	<noscript id='NoScriptNotice'><div id='NoScriptNoticeText'>Javascript is Required</div></noscript>
 </body>
 </html>
