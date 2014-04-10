@@ -4,16 +4,31 @@
 	<meta charset='utf-8'>
 	<script>
 		var Initialise = function(Event) {
+			Sira.Initialise(null);
 			window.removeEventListener('load',Initialise,false); }
 		window.addEventListener('load',Initialise,false);
 	</script>
 	<script src='Resources/Scripts/Sira.js'></script>
 	<style>
+		#NoScriptNotice {
+			background-color: rgba(0,0,0,1);
+			height: 100%;
+			left: 0px;
+			position: fixed;
+			top: 0px;
+			width: 100%; }
+		#NoScriptNoticeText {
+			color: rgba(255,255,255,1);
+			font-family: serif;
+			font-size: 24px;
+			font-variant: small-caps;
+			position: relative;
+			text-align: center;
+			top: 50%; }
 	</style>
 	<title>Simple Image Repository Application</title>
 </head>
 <body>
-	<main>
-	</main>
+	<noscript id='NoScriptNotice'><div id='NoScriptNoticeText'>Javascript is Required</div></noscript>
 </body>
 </html>
