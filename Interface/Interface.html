@@ -30,10 +30,23 @@
 		<form><input id='SearchTrigger' type='search' placeholder='...'></form>
 		<a href='#Administration'>Administration</a>
 		<a href='#Preferences'>Preferences</a>
+		<progress id='SearchProgress'></progress>
 	</div>
 	<div id='AdministrationDisplay'>
 	</div>
 	<div id='PreferencesDisplay'>
+		<form>
+			<input id='PreferenceAuthenticationIdentifier' type='number' placeholder='Identifier'>
+			<input id='PreferenceAuthenticationName' type='text' placeholder='Name'>
+			<input id='PreferenceAuthenticationPassword' type='password' placeholder='Password'>
+		</form>
+		<nav>
+			<a id='AuthenticationIdentifierTrigger' href='#Preferences/AuthenticationIdentifier'>Identifier</a>
+			<a id='AuthenticationNameTrigger' href='#Preferences/AuthenticationName'>Name</a>
+			<a id='AuthenticationPasswordTrigger' href='#Preferences/AuthenticationPassword'>Password</a>
+		</nav>
+	</div>
+	<div id='ResultsDisplay'>
 	</div>
 </body>
 </html>

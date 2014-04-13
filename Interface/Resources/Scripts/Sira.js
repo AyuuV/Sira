@@ -32,10 +32,19 @@ Sira.ParseLocation = function() {
 	var HashLocation = location.hash.substring(1).split('/',2);
 	var AdministrationDisplay = Sira.Element('AdministrationDisplay');
 	var PreferencesDisplay = Sira.Element('PreferencesDisplay');
+	var ResultsDisplay = Sira.Element('ResultsDisplay');
 	if(HashLocation[0]==='Administration') { if(!AdministrationDisplay.classList.contains('Active')) { AdministrationDisplay.classList.add('Active'); } }
 	else if(AdministrationDisplay.classList.contains('Active')) { AdministrationDisplay.classList.remove('Active'); }
-	if(HashLocation[0]==='Preferences') { if(!PreferencesDisplay.classList.contains('Active')) { PreferencesDisplay.classList.add('Active'); } }
+	if(HashLocation[0]==='Preferences') {
+		var AuthenticationIdentifierTrigger = Sira.Element('AuthenticationIdentifierTrigger');
+		if(!PreferencesDisplay.classList.contains('Active')) { PreferencesDisplay.classList.add('Active'); }
+		if(HashLocation.length<2) { HashLocation[1] = 'AuthenticationIdentifier'; }
+		if(HashLocation[1]==='AuthenticationIdentifier') { if(!AuthenticationIdentifierTrigger.classList.contains('Active')) { AuthenticationIdentifierTrigger.classList.add('Active'); } }
+		else if(AuthenticationIdentifierTrigger.classList.contains('Active')) { AuthenticationIdentifierTrigger.classList.remove('Active'); }
+	}
 	else if(PreferencesDisplay.classList.contains('Active')) { PreferencesDisplay.classList.remove('Active'); }
+	if(HashLocation[0]==='Results') { if(!ResultsDisplay.classList.contains('Active')) { ResultsDisplay.classList.add('Active'); } }
+	else if(ResultsDisplay.classList.contains('Active')) { ResultsDisplay.classList.remove('Active'); }
 	return; }
 
 window.addEventListener('load',Sira.Initialise,false);
