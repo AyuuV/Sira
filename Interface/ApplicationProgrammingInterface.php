@@ -23,9 +23,7 @@ function Query($QueryString,$Description='Query',$ErrorCode) {
 		else { return null; } }
 	else { return $Result; } }
 
-if(($ConnectionError=mysqli_connect_errno($Connection))) {
-	$ErrorMessage = mysqli_error($Connection);
-	exit(Error('500 Internal Server Error',"MySQL Connection Error $ConnectionError: $ErrorMessage",1)); }
+if(($ConnectionError=mysqli_connect_errno($Connection))) { exit(Error('500 Internal Server Error',"MySQL Connection Error: $ConnectionError",1)); }
 
 $CurrentDate = mysqli_real_escape_string($Connection,date('Y-m-d H:i:s'));
 $Database = mysqli_real_escape_string($Connection,$Configuration['MySQL']['Database']);
