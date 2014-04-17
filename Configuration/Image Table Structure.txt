@@ -4,13 +4,14 @@ Images
 
 `I` (
     I       BINARY(64)      UNIQUE                                          COMMENT 'Image sha512 hash Identifier',
-    CDT     DATETIME                DEFAULT NOW()                           COMMENT 'Image Creation Date and Time',
+    CDT     DATETIME                                                        COMMENT 'Image Creation Date and Time',
     ACL     BIGINT UNSIGNED         DEFAULT 4294967295                      COMMENT 'Image Access Clearance Level',
     MT      VARCHAR(255)			DEFAULT 'text/plain'                    COMMENT 'Image Mime Type',
     CI      BIGINT UNSIGNED                                                 COMMENT 'Image Creator Identifier',
     PRIMARY KEY(I),
     KEY ACLK (ACL),
-    CONSTRAINT UFK          FOREIGN KEY (CI)                REFERENCES U(I) COMMENT 'Image User Foreign Key'
+    CONSTRAINT UFK                  FOREIGN KEY (CI)                        REFERENCES U(I)
 ) CHARACTER SET utf8 COLLATE utf8_general_ci
 
+COMMENT = 'Images Table'
 ENGINE = InnoDB
