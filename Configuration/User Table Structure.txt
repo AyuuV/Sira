@@ -1,0 +1,16 @@
+**** PLEASE DO NOT EDIT ****
+
+Users
+
+`U` (
+    I       BIGINT UNSIGNED UNIQUE                                          COMMENT 'User Identifier',
+    N       VARCHAR(255)            DEFAULT NULL                            COMMENT 'User Name',
+    P       VARCHAR(255)            DEFAULT NULL                            COMMENT 'User Pass',
+    EMA     VARCHAR(254)            DEFAULT NULL                            COMMENT 'User EMail Address',
+    AC      BIGINT UNSIGNED         DEFAULT 4294967295                      COMMENT 'User Access Clearance',
+    CDT     DATETIME                DEFAULT NOW()                           COMMENT 'User Creation Date and Time',
+    PRIMARY KEY(I),
+    KEY ACK (AC)
+) CHARACTER SET utf8 COLLATE utf8_general_ci
+
+ENGINE = InnoDB

@@ -1,0 +1,13 @@
+**** PLEASE DO NOT EDIT ****
+
+Links
+
+`L` (
+    II      BINARY(64)                                                      COMMENT 'Link Image Identifier',
+    TI      BIGINT UNSIGNED                                                 COMMENT 'Link Tag Identifier',
+    PRIMARY KEY(II,TI),
+    CONSTRAINT IFK          FOREIGN KEY (II)                REFERENCES I(I) COMMENT 'Link Image Foreign Key',
+    CONSTRAINT IFK          FOREIGN KEY (TI)                REFERENCES T(I) COMMENT 'Link Tag Foreign Key',
+) CHARACTER SET utf8 COLLATE utf8_general_ci
+
+ENGINE = InnoDB

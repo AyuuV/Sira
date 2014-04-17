@@ -1,0 +1,14 @@
+**** PLEASE DO NOT EDIT ****
+
+Tags
+
+`T` (
+    I       BIGINT UNSIGNED UNIQUE                                          COMMENT 'Tag Identifier',
+    N       VARCHAR(65535)                                                  COMMENT 'Tag Name',
+    C       VARCHAR(65535)                                                  COMMENT 'Tag Category',
+    PRIMARY KEY(I),
+    INDEX NK (N),
+    INDEX CK (C),
+) CHARACTER SET utf8 COLLATE utf8_general_ci
+
+ENGINE = InnoDB
