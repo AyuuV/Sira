@@ -42,22 +42,17 @@ if(Parameter('Initialise',null)&&$Configuration['MySQL']['Initialisable']) {
 	Query("DROP DATABASE IF EXISTS `$Database`;","Database $Database Drop",7);
 	Query("CREATE DATABASE `$Database`;","Database $Database Creation",8);
 	Query("USE `$Database`","Database $Database Usage",9);
-	Query("CREATE TABLE $TagTableStructure;","Tag Table Structure Creation ($TagTableStructure)",12);
-	Query("CREATE TABLE $UserTableStructure;","User Table Structure Creation ($UserTableStructure)",13);
-	Query("CREATE TABLE $ImageTableStructure;","Image Table Structure Creation ($ImageTableStructure)",10);
-	Query("CREATE TABLE $LinkTableStructure;","Link Table Structure Creation ($LinkTableStructure)",11);
+	Query("CREATE TABLE $TagTableStructure;","Tag Table Structure Creation ($TagTableStructure)",10);
+	Query("CREATE TABLE $UserTableStructure;","User Table Structure Creation ($UserTableStructure)",11);
+	Query("CREATE TABLE $ImageTableStructure;","Image Table Structure Creation ($ImageTableStructure)",12);
+	Query("CREATE TABLE $LinkTableStructure;","Link Table Structure Creation ($LinkTableStructure)",13);
 	Query("INSERT INTO `U` (I,N,P,EMA,AC,CDT) VALUES (0,'$Username','$Password','$EMail',18446744073709551615,'$CurrentDate');","Administrator $Username Creation",14); }
 
 if(!Parameter('UserIdentifier',null)) { exit(Error('401 Unauthorized','User Identifier Invalid',15)); }
 else {
-	$Identifier = mysqli_real_escape_string($Connection,Parameter('UserIdentifier',null));
-
-}
-
-if(Parameter('Request',null)==='Download') { }
-
-else { exit(Error('501 Not Implemented',"Invalid Request",2)); }
-
-mysqli_close($Connection);
+	$Identifier = intval(Parameter('UserIdentifier',null));
+	$Name = mysqli_real_escape_string($Connection,Parameter('UserName',null));
+	$Pass = mysqli_real_escape_string($Connection,Parameter('UserPass',null));
+	if(!mysqli_num_rows(Query("SELECT `I` FROM `U` WHERE `I`=$Identifier AND `N`='$Name' AND `P`='$Pass';",'User Identification Selection',16))) { exit(Error('401 Unauthorized','Invalid User',17)); } }
 
 ?>
