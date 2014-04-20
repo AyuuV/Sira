@@ -53,9 +53,9 @@ if($_SERVER['REQUEST_METHOD']==='POST'&&isset($_POST)) {
 			else { $Initialisation['Name'] = $MySQL->escape_string($_SIRA['DEFAULT_ADMIN']['NAME']); }
 			if(isset($Initialisation['Pass'])) { $Initialisation['Pass'] = $MySQL->escape_string($Initialisation['Pass']); }
 			else { $Initialisation['Pass'] = $MySQL->escape_string($_SIRA['DEFAULT_ADMIN']['PASS']); }
-			if(isset($Initialisation['Email Address'])) { $Initialisation['Email Address'] = $MySQL->escape_string($Initialisation['Email Address']); }
-			else { $Initialisation['Email Address'] = $MySQL->escape_string($_SIRA['DEFAULT_ADMIN']['MAIL']); }
-			if(!($MySQL->query("INSERT INTO U (I,N,P,EMA,AC) VALUES ($Initialisation[Identifier],'$Initialisation[Name]','$Initialisation[Pass]','$Initialisation[Email Address]',18446744073709551615)"))) {
+			if(isset($Initialisation['EmailAddress'])) { $Initialisation['EmailAddress'] = $MySQL->escape_string($Initialisation['EmailAddress']); }
+			else { $Initialisation['EmailAddress'] = $MySQL->escape_string($_SIRA['DEFAULT_ADMIN']['MAIL']); }
+			if(!($MySQL->query("INSERT INTO U (I,N,P,EMA,AC) VALUES ($Initialisation[Identifier],'$Initialisation[Name]','$Initialisation[Pass]','$Initialisation[EmailAddress]',18446744073709551615)"))) {
 				http_reponse_code(intval($_SIRA['RESPONSE']['USER_MODIFICATION_FAIL']));
 				echo 'MySQL User Modification Failure: ';
 				echo $MySQL->errno;
