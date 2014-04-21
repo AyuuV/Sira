@@ -3,6 +3,31 @@
 <head>
 	<meta charset='utf-8'>
 	<script>
+		window.addEventListener('load',function() {
+			window.dispatchEvent(new HashChangeEvent("hashchange"));
+			document.addEventListener('keydown',function(Event) {
+				if(Event.ctrlKey&&Event.altKey) {
+					if(document.getElementById('Main').classList.contains('Inactive')) { document.getElementById('Main').classList.remove('Inactive'); }
+					else { document.getElementById('Main').classList.add('Inactive'); }
+					if(document.getElementById('Menu').classList.contains('Inactive')) { document.getElementById('Menu').classList.remove('Inactive'); }
+					else { document.getElementById('Menu').classList.add('Inactive'); } }
+				return; });
+			return; },false);
+		window.addEventListener('hashchange',function(Event) {
+			var Location = location.hash.substring(1).split('/');
+			if(Location[0]=='Menu') {
+				if(!document.getElementById('Main').classList.contains('Inactive')) { document.getElementById('Main').classList.add('Inactive'); }
+				if(document.getElementById('Menu').classList.contains('Inactive')) { document.getElementById('Menu').classList.remove('Inactive'); } }
+			else {
+				if(document.getElementById('Main').classList.contains('Inactive')) { document.getElementById('Main').classList.remove('Inactive'); }
+				if(!document.getElementById('Menu').classList.contains('Inactive')) { document.getElementById('Menu').classList.add('Inactive'); } }
+			if(Location[0]=='Administration') {
+				if(!document.getElementById('Administration').classList.contains('Active')) { document.getElementById('Administration').classList.add('Active'); }
+			}
+			else if(document.getElementById('Administration').classList.contains('Active')) { document.getElementById('Administration').classList.remove('Active'); }
+			Event.preventDefault();
+			Event.stopPropagation();
+			return; },true);
 	</script>
 	<style>
 		body main {
@@ -11,8 +36,7 @@
 			overflow: auto;
 			position: absolute;
 			top: 0px;
-			right: 0px;
-		}
+			right: 0px; }
 		body nav {
 			height: 100%;
 			left: 0px;
@@ -20,11 +44,11 @@
 			position: absolute;
 			top: 0px;
 			width: 400px; }
-		body nav form { padding: 24px 32px; }
+		body nav form { padding: 32px 42px; }
 		body nav form input[type='search'] {
 			background-color: rgba(0,0,0,0);
 			border: none;
-			font-size: 24pt;
+			font-size: 42pt;
 			width: 100%; }
 		body nav ul {
 			margin: 0px;
@@ -32,8 +56,8 @@
 		body nav ul li { list-style-type: none; }
 		body nav ul li a {
 			display: block;
-			font-size: 16pt;
-			padding: 16px 24px;
+			font-size: 21pt;
+			padding: 21px 28px;
 			text-align: left;
 			text-decoration: none; }
 	</style>
@@ -41,8 +65,15 @@
 		body.DefaultTheme {
 			color: rgba(255,255,255,1);
 			font-family: sans-serif; }
-		body.DefaultTheme main { background-color: rgba(64,224,128,1); }
-		body.DefaultTheme nav { background-color: rgba(32,192,96,1); }
+		body.DefaultTheme main {
+			background-color: rgba(64,224,128,1);
+			left: 0px;
+			transition: left 0.5s; }
+		body.DefaultTheme main.Inactive { left: 400px; }
+		body.DefaultTheme nav {
+			background-color: rgba(32,192,96,1);
+			transition: left 0.5s; }
+		body.DefaultTheme nav.Inactive { left: -400px; }
 		body.DefaultTheme nav form input[type='search'] {
 			color: rgba(255,255,255,1);
 			font-family: sans-serif; }
@@ -51,28 +82,40 @@
 			transition:
 				background-color 0.5s,
 				text-indent 0.5s; }
+		body.DefaultTheme nav ul li a.Active {
+			background-color: rgba(24,172,72,1);
+			text-indent: 1em;
+			transition:
+				background-color 0.2s,
+				text-indent 0.2s; }
 		body.DefaultTheme nav ul li a:hover {
 			background-color: rgba(16,160,64,1);
 			text-indent: 1em;
 			transition:
 				background-color 0.2s,
-				text-indent 0.2s;}
+				text-indent 0.2s; }
 	</style>
 	<title>Interface</title>
 </head>
 <body class='DefaultTheme'>
-	<nav id='MenuScreen'>
-		<form>
-			<input id='SearchInput' placeholder='Search' type='search'>
-		</form>
+	<nav id='Menu'>
+		<form><input id='Search' placeholder='Search' type='search'></form>
 		<ul>
-			<li><a href='#AdministrationScreen'>Administration</a></li>
-			<li><a href='#MainScreen'>Browse</a></li>
-			<li><a href='#MainScreen'>Preferences</a></li>
-			<li><a href='#MainScreen'>Upload</a></li>
+			<li><a href='#Administration'>Administration</a></li>
+			<li><a href='#Browse'>Browse</a></li>
+			<li><a href='#Preferences'>Preferences</a></li>
+			<li><a href='#Upload'>Upload</a></li>
 		</ul>
 	</nav>
-	<main id='MainScreen'>
+	<main id='Main'>
+		<div id='Administration'>
+		</div>
+		<div id='Browse'>
+		</div>
+		<div id='Preferences'>
+		</div>
+		<div id='Upload'>
+		</div>
 	</main>
 </body>
 </html>
