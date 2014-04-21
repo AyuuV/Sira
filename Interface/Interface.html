@@ -2,8 +2,77 @@
 <html>
 <head>
 	<meta charset='utf-8'>
+	<script>
+	</script>
+	<style>
+		body main {
+			height: 100%;
+			left: 400px;
+			overflow: auto;
+			position: absolute;
+			top: 0px;
+			right: 0px;
+		}
+		body nav {
+			height: 100%;
+			left: 0px;
+			overflow: auto;
+			position: absolute;
+			top: 0px;
+			width: 400px; }
+		body nav form { padding: 24px 32px; }
+		body nav form input[type='search'] {
+			background-color: rgba(0,0,0,0);
+			border: none;
+			font-size: 24pt;
+			width: 100%; }
+		body nav ul {
+			margin: 0px;
+			padding: 0px; }
+		body nav ul li { list-style-type: none; }
+		body nav ul li a {
+			display: block;
+			font-size: 16pt;
+			padding: 16px 24px;
+			text-align: left;
+			text-decoration: none; }
+	</style>
+	<style>
+		body.DefaultTheme {
+			color: rgba(255,255,255,1);
+			font-family: sans-serif; }
+		body.DefaultTheme main { background-color: rgba(64,224,128,1); }
+		body.DefaultTheme nav { background-color: rgba(32,192,96,1); }
+		body.DefaultTheme nav form input[type='search'] {
+			color: rgba(255,255,255,1);
+			font-family: sans-serif; }
+		body.DefaultTheme nav ul li a {
+			color: rgba(255,255,255,1);
+			transition:
+				background-color 0.5s,
+				text-indent 0.5s; }
+		body.DefaultTheme nav ul li a:hover {
+			background-color: rgba(16,160,64,1);
+			text-indent: 1em;
+			transition:
+				background-color 0.2s,
+				text-indent 0.2s;}
+	</style>
 	<title>Interface</title>
 </head>
-<body>
+<body class='DefaultTheme'>
+	<nav id='MenuScreen'>
+		<form>
+			<input id='SearchInput' placeholder='Search' type='search'>
+		</form>
+		<ul>
+			<li><a href='#AdministrationScreen'>Administration</a></li>
+			<li><a href='#MainScreen'>Browse</a></li>
+			<li><a href='#MainScreen'>Preferences</a></li>
+			<li><a href='#MainScreen'>Upload</a></li>
+		</ul>
+	</nav>
+	<main id='MainScreen'>
+	</main>
 </body>
 </html>
