@@ -3,92 +3,175 @@
 <head>
 	<meta charset='utf-8'>
 	<script>
-		window.addEventListener('load',function() {
-			window.dispatchEvent(new HashChangeEvent("hashchange"));
-			document.addEventListener('keydown',function(Event) {
-				if(Event.ctrlKey&&Event.altKey) {
-					if(document.getElementById('Main').classList.contains('Inactive')) { document.getElementById('Main').classList.remove('Inactive'); }
-					else { document.getElementById('Main').classList.add('Inactive'); }
-					if(document.getElementById('Menu').classList.contains('Inactive')) { document.getElementById('Menu').classList.remove('Inactive'); }
-					else { document.getElementById('Menu').classList.add('Inactive'); } }
-				return; });
-			return; },false);
-		window.addEventListener('hashchange',function(Event) {
-			var Location = location.hash.substring(1).split('/');
-			if(Location[0]=='Menu') {
-				if(!document.getElementById('Main').classList.contains('Inactive')) { document.getElementById('Main').classList.add('Inactive'); }
-				if(document.getElementById('Menu').classList.contains('Inactive')) { document.getElementById('Menu').classList.remove('Inactive'); } }
-			else {
-				if(document.getElementById('Main').classList.contains('Inactive')) { document.getElementById('Main').classList.remove('Inactive'); }
-				if(!document.getElementById('Menu').classList.contains('Inactive')) { document.getElementById('Menu').classList.add('Inactive'); } }
-			if(Location[0]=='Administration') {
-				if(!document.getElementById('Administration').classList.contains('Active')) { document.getElementById('Administration').classList.add('Active'); }
+		var funcActivateScreen = function(varScreenName,varParameters) {
+			var varAdministrationScreen = document.getElementById('administrationScreen');
+			var varBrowserScreen = document.getElementById('browserScreen');
+			var varPreferencesScreen = document.getElementById('preferencesScreen');
+			var varTriggers = document.getElementById('menuScreen').getElementsByTagName('a');
+			var varUploadScreen = document.getElementById('uploadScreen');
+			for(var varIndex=0;varIndex<varTriggers.length;varIndex++) {
+				if(varTriggers[varIndex].textContent==varScreenName&&!varTriggers[varIndex].classList.contains('activeTrigger')) { varTriggers[varIndex].classList.add('activeTrigger'); }
+				else if(varTriggers[varIndex].classList.contains('activeTrigger')) { varTriggers[varIndex].classList.remove('activeTrigger'); } }
+			if(varScreenName=='Administration') {
+				if(!varAdministrationScreen.classList.contains('activeScreen')) { varAdministrationScreen.classList.add('activeScreen'); }
 			}
-			else if(document.getElementById('Administration').classList.contains('Active')) { document.getElementById('Administration').classList.remove('Active'); }
-			Event.preventDefault();
-			Event.stopPropagation();
+			else if(varAdministrationScreen.classList.contains('activeScreen')) { varAdministrationScreen.classList.remove('activeScreen'); }
+			if(varScreenName=='Browse') {
+				if(!varBrowserScreen.classList.contains('activeScreen')) { varBrowserScreen.classList.add('activeScreen'); }
+			}
+			else if(varBrowserScreen.classList.contains('activeScreen')) { varBrowserScreen.classList.remove('activeScreen'); }
+			if(varScreenName=='Preferences') {
+				if(!varPreferencesScreen.classList.contains('activeScreen')) { varPreferencesScreen.classList.add('activeScreen'); }
+			}
+			else if(varPreferencesScreen.classList.contains('activeScreen')) { varPreferencesScreen.classList.remove('activeScreen'); }
+			if(varScreenName=='Upload') {
+				if(!varUploadScreen.classList.contains('activeScreen')) { varUploadScreen.classList.add('activeScreen'); }
+			}
+			else if(varUploadScreen.classList.contains('activeScreen')) { varUploadScreen.classList.remove('activeScreen'); }
+			return; }
+		var funcInitialise = function() {
+			funcSetTheme(localStorage['interfaceThemeClass']||'green40E080Theme');
+			document.addEventListener('contextmenu',function(varEvent) {
+				varEvent.stopPropagation();
+				varEvent.preventDefault();
+				return funcToggleMenu(); },true);
+			document.addEventListener('keydown',function(varEvent) {
+				if(varEvent.ctrlKey&&varEvent.altKey) {
+					varEvent.stopPropagation();
+					varEvent.preventDefault();
+					funcToggleMenu(); }
+				return; },true);
+			window.dispatchEvent(new HashChangeEvent('hashchange'));
+			return; }
+		var funcToggleMenu = function() {
+			var varMain = document.getElementById('mainScreen').classList;
+			var varMenu = document.getElementById('menuScreen').classList;
+			if(varMenu.contains('inactiveFocus')) {
+				if(varMain.contains('activeFocus')) { varMain.remove('activeFocus'); }
+				varMenu.remove('inactiveFocus'); }
+			else {
+				if(!varMain.contains('activeFocus')) { varMain.add('activeFocus'); }
+				varMenu.add('inactiveFocus'); }
+			return; }
+		var funcSetTheme = function(varThemeName) {
+			var varClassList = document.body.classList;
+			while(varClassList.length) { varClassList.remove(0); }
+			if(!varThemeName) { varThemeName = localStorage['interfaceThemeClass']; }
+			else { localStorage['interfaceThemeClass'] = varThemeName; }
+			varClassList.add(varThemeName);
+			return varThemeName; }
+		window.addEventListener('load',funcInitialise,false);
+		window.addEventListener('hashchange',function(varEvent) {
+			var varLocation = location.hash.substring(1).split('/');
+			if(varLocation.length) { funcActivateScreen(varLocation[0],varLocation.slice(1)); }
+			varEvent.preventDefault();
+			varEvent.stopPropagation();
 			return; },true);
 	</script>
 	<style>
-		body main {
-			height: 100%;
-			left: 400px;
+		body.green40E080Theme {
+			color: rgba(255,255,255,1);
+			font-family: sans-serif; }
+		body.green40E080Theme main {
+			background-color: rgba(64,224,128,1);
+			bottom: 0px;
+			left: 256px;
 			overflow: auto;
 			position: absolute;
+			right: 0px;
 			top: 0px;
-			right: 0px; }
-		body nav {
-			height: 100%;
+			transition: left 0.2s;}
+		body.green40E080Theme main.activeFocus {
 			left: 0px;
-			overflow: auto;
-			position: absolute;
-			top: 0px;
-			width: 400px; }
-		body nav form { padding: 32px 42px; }
-		body nav form input[type='search'] {
+			transition: left 0.5s; }
+		body.green40E080Theme main div form {
+			margin: 0px;
+			padding: 0px 2em; }
+		body.green40E080Theme main div form button {
+			background-color: rgba(255,255,255,1);
+			border: none;
+			color: rgba(56,212,120,1);
+			display: block;
+			font-size: inherit;
+			display: inline-block;
+			margin: 0px;
+			width: 320px;
+			padding: 0px;
+			transition:
+				background-color 0.5s,
+				color 0.5s; }
+		body.green40E080Theme main div form button:hover {
+			background-color: rgba(16,160,64,1);
+			color: rgba(255,255,255,1);
+			transition:
+				background-color 0.2s,
+				color 0.2s; }
+		body.green40E080Theme main div form input[type='email'],
+		body.green40E080Theme main div form input[type='number'],
+		body.green40E080Theme main div form input[type='password'],
+		body.green40E080Theme main div form input[type='text'] {
 			background-color: rgba(0,0,0,0);
 			border: none;
-			font-size: 42pt;
+			color: inherit;
+			display: block;
+			font-family: inherit;
+			font-size: inherit;
+			margin: 0px;
+			padding: 4px;
+			width: 320px; }
+		body.green40E080Theme main div h1 {
+			background-color: rgba(56,200,112,1);
+			font-family: sans-serif;
+			font-size: 28pt;
+			font-variant: small-caps;
+			font-weight: bold;
+			margin: 0px;
+			padding: 4px 0px;
+			text-indent: 2em; }
+		body.green40E080Theme nav {
+			background-color: rgba(32,192,96,1);
+			bottom: 0px;
+			left: 0px;
+			margin-left: 0px;
+			overflow: auto;
+			position: absolute;
+			top: 0px;
+			transition: margin-left 0.2s;
+			width: 256px; }
+		body.green40E080Theme nav.inactiveFocus {
+			margin-left: -256px;
+			transition: margin-left 0.5s; }
+		body.green40E080Theme nav form { padding: 16px; }
+		body.green40E080Theme nav form input[type='search'] {
+			background-color: rgba(0,0,0,0);
+			border: none;
+			color: rgba(255,255,255,1);
+			font-family: sans-serif;
+			font-size: 28pt;
 			width: 100%; }
-		body nav ul {
+		body.green40E080Theme nav ul {
 			margin: 0px;
 			padding: 0px; }
-		body nav ul li { list-style-type: none; }
-		body nav ul li a {
+		body.green40E080Theme nav ul li { list-style-type: none; }
+		body.green40E080Theme nav ul li a {
+			color: rgba(255,255,255,1);
 			display: block;
-			font-size: 21pt;
-			padding: 21px 28px;
-			text-align: left;
-			text-decoration: none; }
-	</style>
-	<style>
-		body.DefaultTheme {
-			color: rgba(255,255,255,1);
-			font-family: sans-serif; }
-		body.DefaultTheme main {
-			background-color: rgba(64,224,128,1);
-			left: 0px;
-			transition: left 0.5s; }
-		body.DefaultTheme main.Inactive { left: 400px; }
-		body.DefaultTheme nav {
-			background-color: rgba(32,192,96,1);
-			transition: left 0.5s; }
-		body.DefaultTheme nav.Inactive { left: -400px; }
-		body.DefaultTheme nav form input[type='search'] {
-			color: rgba(255,255,255,1);
-			font-family: sans-serif; }
-		body.DefaultTheme nav ul li a {
-			color: rgba(255,255,255,1);
+			font-family: sans-serif;
+			font-size: 16pt;
+			font-variant: small-caps;
+			padding: 8px 24px;
+			text-decoration: none;
+			text-indent: 0px;
 			transition:
 				background-color 0.5s,
 				text-indent 0.5s; }
-		body.DefaultTheme nav ul li a.Active {
+		body.green40E080Theme nav ul li a.activeTrigger {
 			background-color: rgba(24,172,72,1);
 			text-indent: 1em;
 			transition:
 				background-color 0.2s,
-				text-indent 0.2s; }
-		body.DefaultTheme nav ul li a:hover {
+				text-indent 0.2s;}
+		body.green40E080Theme nav ul li a:hover {
 			background-color: rgba(16,160,64,1);
 			text-indent: 1em;
 			transition:
@@ -97,9 +180,9 @@
 	</style>
 	<title>Interface</title>
 </head>
-<body class='DefaultTheme'>
-	<nav id='Menu'>
-		<form><input id='Search' placeholder='Search' type='search'></form>
+<body>
+	<nav id='menuScreen'>
+		<form><input id='searchInput' placeholder='Search' type='search'></form>
 		<ul>
 			<li><a href='#Administration'>Administration</a></li>
 			<li><a href='#Browse'>Browse</a></li>
@@ -107,14 +190,27 @@
 			<li><a href='#Upload'>Upload</a></li>
 		</ul>
 	</nav>
-	<main id='Main'>
-		<div id='Administration'>
+	<main id='mainScreen'>
+		<div id='administrationScreen'>
+			<h1>Initialisation</h1>
+			<form>
+				<input type='text' placeholder='Name'>
+				<input type='password' placeholder='Password'>
+				<input type='email' placeholder='Email'>
+				<button id='initialisationButton'>Initialise</button>
+			</form>
 		</div>
-		<div id='Browse'>
+		<div id='browserScreen'>
 		</div>
-		<div id='Preferences'>
+		<div id='preferencesScreen'>
+			<h1>Authentication</h1>
+			<form>
+				<input type='number' placeholder='Identifier'>
+				<input type='text' placeholder='Name'>
+				<input type='password' placeholder='Password'>
+			</form>
 		</div>
-		<div id='Upload'>
+		<div id='uploadScreen'>
 		</div>
 	</main>
 </body>
