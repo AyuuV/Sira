@@ -50,17 +50,62 @@
 			window.dispatchEvent(new HashChangeEvent('hashchange'));
 			return; }
 		var funcInitialiseAdministration = function() {
+			var varEmail = document.getElementById('initialEmail');
+			var varName = document.getElementById('initialName');
+			var varPassword = document.getElementById('initialPassword');
+			document.getElementById('authenticationPassword').addEventListener('click',function() {
+				return; });
 			return; }
-		var funcToggleMenu = function() {
-			var varMain = document.getElementById('mainScreen').classList;
-			var varMenu = document.getElementById('menuScreen').classList;
-			if(varMenu.contains('inactiveFocus')) {
-				if(varMain.contains('activeFocus')) { varMain.remove('activeFocus'); }
-				varMenu.remove('inactiveFocus'); }
-			else {
-				if(!varMain.contains('activeFocus')) { varMain.add('activeFocus'); }
-				varMenu.add('inactiveFocus'); }
-			return; }
+		var funcRetrieve = function(varDisplay,varData=null,varFunction=null,varMethod='GET',varMode='text',varResource='/ApplicationProgrammingInterface.php') {
+			var varRequest = new XMLHttpRequest;
+			varRequest.open(varMethod,varResource);
+			varRequest.responseType = varMode;
+			varRequest.addEventListener('abort',function() {
+				if(varDisplay) {
+					varDisplay.classList.add('downloadAbort');
+					varDisplay.classList.remove('downloadProgress'); }
+				return; });
+			varRequest.addEventListener('error',function() {
+				if(varDisplay) {
+					varDisplay.classList.add('downloadError');
+					varDisplay.classList.remove('downloadProgress'); }
+				return; });
+			varRequest.addEventListener('load',function() {
+				if(varDisplay) {
+					varDisplay.classList.add('downloadSuccess');
+					varDisplay.classList.remove('downloadProgress'); }
+				if(varFunction) { varFunction(varRequest,true); }
+				return; });
+			varRequest.addEventListener('progress',function(varEvent) {
+				if(varEvent.lengthComputable&&varDisplay) {
+					varDisplay.classList.add('downloadProgress');
+					varDisplay.max = varEvent.total;
+					varDisplay.value = varEvent.loaded; }
+				return; });
+			varRequest.upload.addEventListener('abort',function() {
+				if(varDisplay) {
+					varDisplay.classList.add('uploadAbort');
+					varDisplay.classList.remove('uploadProgress'); }
+				return; });
+			varRequest.upload.addEventListener('error',function() {
+				if(varDisplay) {
+					varDisplay.classList.add('uploadError');
+					varDisplay.classList.remove('uploadProgress'); }
+				return; });
+			varRequest.upload.addEventListener('load',function() {
+				if(varDisplay) {
+					varDisplay.classList.add('uploadSuccess');
+					varDisplay.classList.remove('uploadProgress'); }
+				if(varFunction) { varFunction(varRequest,false); }
+				return; });
+			varRequest.upload.addEventListener('progress',function(varEvent) {
+				if(varEvent.lengthComputable&&varDisplay) {
+					varDisplay.classList.add('uploadProgress');
+					varDisplay.max = varEvent.total;
+					varDisplay.value = varEvent.loaded; }
+				return; });
+			varRequest.send(varData);
+			return varRequest; }
 		var funcSetTheme = function(varThemeName) {
 			var varClassList = document.body.classList;
 			var varThemeClassTriggers = document.getElementById('themeClassTriggers').getElementsByTagName('button');
@@ -72,6 +117,16 @@
 			else { localStorage['interfaceThemeClass'] = varThemeName; }
 			varClassList.add(varThemeName);
 			return varThemeName; }
+		var funcToggleMenu = function() {
+			var varMain = document.getElementById('mainScreen').classList;
+			var varMenu = document.getElementById('menuScreen').classList;
+			if(varMenu.contains('inactiveFocus')) {
+				if(varMain.contains('activeFocus')) { varMain.remove('activeFocus'); }
+				varMenu.remove('inactiveFocus'); }
+			else {
+				if(!varMain.contains('activeFocus')) { varMain.add('activeFocus'); }
+				varMenu.add('inactiveFocus'); }
+			return; }
 		window.addEventListener('load',funcInitialise,false);
 		window.addEventListener('hashchange',function(varEvent) {
 			var varLocation = location.hash.substring(1).split('/');
