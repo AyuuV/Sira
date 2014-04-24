@@ -3,7 +3,7 @@
 Tags
 
 `T` (
-    I       BIGINT UNSIGNED UNIQUE                                          COMMENT 'Tag Identifier',
+    I       BIGINT UNSIGNED UNIQUE  NOT NULL                                COMMENT 'Tag Identifier',
     N       VARCHAR(65535)                                                  COMMENT 'Tag Name',
     C       VARCHAR(65535)                                                  COMMENT 'Tag Category',
     PRIMARY KEY(I),
