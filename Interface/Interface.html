@@ -53,7 +53,18 @@
 			var varEmail = document.getElementById('initialEmail');
 			var varName = document.getElementById('initialName');
 			var varPassword = document.getElementById('initialPassword');
-			document.getElementById('authenticationPassword').addEventListener('click',function() {
+			document.getElementById('initialisationButton').addEventListener('click',function() {
+				var varFormData = new FormData;
+				varFormData.append('Init',JSON.stringify({
+					'Identifier' : document.getElementById('initialIdentifier').value,
+					'Name' : document.getElementById('initialName').value,
+					'Pass' : document.getElementById('initialPassword').value,
+					'EmailAddress' : document.getElementById('initialEmail').value }));
+				funcRetrieve(document.getElementById('initialisationProgress'),varFormData,function(varRequest,varDownload) {
+					if(varDownload) {
+						console.log(varRequest.status.toString()+': '+varRequest.response);
+					}
+					return; },'POST');
 				return; });
 			return; }
 		var funcRetrieve = function(varDisplay,varData=null,varFunction=null,varMethod='GET',varMode='text',varResource='/ApplicationProgrammingInterface.php') {
@@ -296,7 +307,9 @@
 		<div id='administrationScreen'>
 			<section>
 				<h1>Initialisation</h1>
+				<progress id='initialisationProgress'></progress>
 				<form>
+					<input id='initialIdentifier' placeholder='Identifier' type='number'>
 					<input id='initialName' placeholder='Name' type='text'>
 					<input id='initialPassword' placeholder='Password' type='password'>
 					<input id='initialEmail' placeholder='Email' type='email'>
