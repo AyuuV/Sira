@@ -7,8 +7,8 @@ Tags
     N       VARCHAR(65535)                                                  COMMENT 'Tag Name',
     C       VARCHAR(65535)                                                  COMMENT 'Tag Category',
     PRIMARY KEY(I),
-    INDEX NK (N(65535)),
-    INDEX CK (C(65535))
+    INDEX TNI (N(65535)),
+    INDEX TCI (C(65535))
 ) CHARACTER SET utf8 COLLATE utf8_general_ci
 
 COMMENT = 'Tags Table'

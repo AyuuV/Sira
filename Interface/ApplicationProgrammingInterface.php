@@ -36,10 +36,10 @@ if($_SERVER['REQUEST_METHOD']==='POST'&&isset($_POST)) {
 		if(!($MySQL->query("DROP DATABASE IF EXISTS `$DatabaseName`")&&
 				$MySQL->query("CREATE DATABASE `$DatabaseName`")&&
 				$MySQL->query("USE `$DatabaseName`")&&
-				$MySQL->query("CREATE TABLE $ImageTableStructure")&&
-				$MySQL->query("CREATE TABLE $LinkTableStructure")&&
 				$MySQL->query("CREATE TABLE $TagTableStructure")&&
-				$MySQL->query("CREATE TABLE $UserTableStructure"))) {
+				$MySQL->query("CREATE TABLE $UserTableStructure")&&
+				$MySQL->query("CREATE TABLE $ImageTableStructure")&&
+				$MySQL->query("CREATE TABLE $LinkTableStructure"))) {
 			http_response_code(intval($_SIRA['RESPONSE']['DATABASE_MODIFICATION_FAIL']));
 			echo 'MySQL Database Modification Failure: ';
 			echo $MySQL->errno;

@@ -9,8 +9,8 @@ Images
     MT      VARCHAR(255)			DEFAULT 'text/plain'                    COMMENT 'Image Mime Type',
     CI      BIGINT UNSIGNED         NOT NULL                                COMMENT 'Image Creator Identifier',
     PRIMARY KEY (I),
-    KEY ACLK (ACL),
-    CONSTRAINT UFK                  FOREIGN KEY (CI)                        REFERENCES U (I)
+    KEY IACLK (ACL),
+    CONSTRAINT IUFKC                FOREIGN KEY (CI)                        REFERENCES U (I)
 ) CHARACTER SET utf8 COLLATE utf8_general_ci
 
 COMMENT = 'Images Table'

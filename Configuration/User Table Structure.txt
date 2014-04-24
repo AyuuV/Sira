@@ -10,8 +10,8 @@ Users
     AC      BIGINT UNSIGNED         DEFAULT 4294967295                      COMMENT 'User Access Clearance',
     CDT     DATETIME                                                        COMMENT 'User Creation Date and Time',
     PRIMARY KEY (I),
-	INDEX NK (N(65535)),
-    KEY ACK (AC)
+	INDEX UNI (N(65535)),
+    KEY UACK (AC)
 ) CHARACTER SET utf8 COLLATE utf8_general_ci
 
 COMMENT = 'Users Table'
