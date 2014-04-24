@@ -40,7 +40,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'&&isset($_POST)) {
 				$MySQL->query("CREATE TABLE $LinkTableStructure")&&
 				$MySQL->query("CREATE TABLE $TagTableStructure")&&
 				$MySQL->query("CREATE TABLE $UserTableStructure"))) {
-			http_reponse_code(intval($_SIRA['RESPONSE']['DATABASE_MODIFICATION_FAIL']));
+			http_response_code(intval($_SIRA['RESPONSE']['DATABASE_MODIFICATION_FAIL']));
 			echo 'MySQL Database Modification Failure: ';
 			echo $MySQL->errno;
 			echo ', ';
