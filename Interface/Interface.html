@@ -30,7 +30,13 @@
 			else if(varUploadScreen.classList.contains('activeScreen')) { varUploadScreen.classList.remove('activeScreen'); }
 			return; }
 		var funcInitialise = function() {
-			funcSetTheme(localStorage['interfaceThemeClass']||'green40E080Theme');
+			var varThemeClassTriggers = document.getElementById('themeClassTriggers').getElementsByTagName('button');
+			for(var varIndex=0;varIndex<varThemeClassTriggers.length;varIndex++) {
+				varThemeClassTriggers[varIndex].addEventListener('click',function() {
+					funcSetTheme('style'+this.textContent.replace(/\s+/g,''));
+					return; }); }
+			funcInitialiseAdministration();
+			funcSetTheme(localStorage['interfaceThemeClass']||'styleSimpleGreenTheme');
 			document.addEventListener('contextmenu',function(varEvent) {
 				varEvent.stopPropagation();
 				varEvent.preventDefault();
@@ -42,6 +48,8 @@
 					funcToggleMenu(); }
 				return; },true);
 			window.dispatchEvent(new HashChangeEvent('hashchange'));
+			return; }
+		var funcInitialiseAdministration = function() {
 			return; }
 		var funcToggleMenu = function() {
 			var varMain = document.getElementById('mainScreen').classList;
@@ -55,7 +63,11 @@
 			return; }
 		var funcSetTheme = function(varThemeName) {
 			var varClassList = document.body.classList;
-			while(varClassList.length) { varClassList.remove(0); }
+			var varThemeClassTriggers = document.getElementById('themeClassTriggers').getElementsByTagName('button');
+			for(var varIndex=0;varIndex<varThemeClassTriggers.length;varIndex++) {
+				if('style'+varThemeClassTriggers[varIndex].textContent.replace(/\s+/g,'')==varThemeName) { varThemeClassTriggers[varIndex].classList.add('activeTheme'); }
+				else if(varThemeClassTriggers[varIndex].classList.contains('activeTheme')) { varThemeClassTriggers[varIndex].classList.remove('activeTheme'); } }
+			while(varClassList.length) { varClassList.remove(varClassList[0]); }
 			if(!varThemeName) { varThemeName = localStorage['interfaceThemeClass']; }
 			else { localStorage['interfaceThemeClass'] = varThemeName; }
 			varClassList.add(varThemeName);
@@ -69,10 +81,10 @@
 			return; },true);
 	</script>
 	<style>
-		body.green40E080Theme {
+		body.styleSimpleGreenTheme {
 			color: rgba(255,255,255,1);
 			font-family: sans-serif; }
-		body.green40E080Theme main {
+		body.styleSimpleGreenTheme main {
 			background-color: rgba(64,224,128,1);
 			bottom: 0px;
 			left: 256px;
@@ -81,10 +93,10 @@
 			right: 0px;
 			top: 0px;
 			transition: left 0.2s;}
-		body.green40E080Theme main.activeFocus {
+		body.styleSimpleGreenTheme main.activeFocus {
 			left: 0px;
 			transition: left 0.5s; }
-		body.green40E080Theme main div {
+		body.styleSimpleGreenTheme main div {
 			height: 100%;
 			overflow: auto;
 			opacity: 0;
@@ -97,19 +109,15 @@
 				z-index 0.5s;
 			width: 100%;
 			z-index: 0;}
-		body.green40E080Theme main div.activeScreen {
+		body.styleSimpleGreenTheme main div.activeScreen {
 			opacity: 1;
 			pointer-events: auto;
 			transform: scale(1);
-			transition:
-				opacity 0.2s,
-				transform 0.5s,
-				z-index 0.2s;
 			z-index: 10; }
-		body.green40E080Theme main div form {
+		body.styleSimpleGreenTheme main div section form {
 			margin: 0px;
 			padding: 0px 2em; }
-		body.green40E080Theme main div form button {
+		body.styleSimpleGreenTheme main div section form button {
 			background-color: rgba(255,255,255,1);
 			border: none;
 			color: rgba(56,212,120,1);
@@ -118,20 +126,20 @@
 			display: inline-block;
 			margin: 0px;
 			width: 320px;
-			padding: 0px;
+			padding: 4px;
 			transition:
 				background-color 0.5s,
 				color 0.5s; }
-		body.green40E080Theme main div form button:hover {
+		body.styleSimpleGreenTheme main div section form button:hover {
 			background-color: rgba(16,160,64,1);
 			color: rgba(255,255,255,1);
 			transition:
 				background-color 0.2s,
 				color 0.2s; }
-		body.green40E080Theme main div form input[type='email'],
-		body.green40E080Theme main div form input[type='number'],
-		body.green40E080Theme main div form input[type='password'],
-		body.green40E080Theme main div form input[type='text'] {
+		body.styleSimpleGreenTheme main div section form input[type='email'],
+		body.styleSimpleGreenTheme main div section form input[type='number'],
+		body.styleSimpleGreenTheme main div section form input[type='password'],
+		body.styleSimpleGreenTheme main div section form input[type='text'] {
 			background-color: rgba(0,0,0,0);
 			border: none;
 			color: inherit;
@@ -141,7 +149,24 @@
 			margin: 0px;
 			padding: 4px;
 			width: 320px; }
-		body.green40E080Theme main div h1 {
+		body.styleSimpleGreenTheme main div section form ul {
+			margin: 0px;
+			padding: 0px; }
+		body.styleSimpleGreenTheme main div section form ul li { list-style-type: none; }
+		body.styleSimpleGreenTheme main div section form ul li button {
+			background-color: rgba(0,0,0,0);
+			color: rgba(255,255,255,1);
+			text-align: left;
+			transition: background-color 0.5s; }
+		body.styleSimpleGreenTheme main div section form ul li button.activeTheme {
+			background-color: rgba(255,255,255,1);
+			color: rgba(56,212,120,1);
+			transition: background-color 0.2s; }
+		body.styleSimpleGreenTheme main div section form ul li button:hover {
+			background-color: rgba(16,160,64,1);
+			color: rgba(255,255,255,1);
+			transition: background-color 0.2s; }
+		body.styleSimpleGreenTheme main div section h1 {
 			background-color: rgba(56,200,112,1);
 			font-family: sans-serif;
 			font-size: 28pt;
@@ -150,7 +175,7 @@
 			margin: 0px;
 			padding: 4px 0px;
 			text-indent: 2em; }
-		body.green40E080Theme nav {
+		body.styleSimpleGreenTheme nav {
 			background-color: rgba(32,192,96,1);
 			bottom: 0px;
 			left: 0px;
@@ -160,22 +185,22 @@
 			top: 0px;
 			transition: margin-left 0.2s;
 			width: 256px; }
-		body.green40E080Theme nav.inactiveFocus {
+		body.styleSimpleGreenTheme nav.inactiveFocus {
 			margin-left: -256px;
 			transition: margin-left 0.5s; }
-		body.green40E080Theme nav form { padding: 16px; }
-		body.green40E080Theme nav form input[type='search'] {
+		body.styleSimpleGreenTheme nav form { padding: 16px; }
+		body.styleSimpleGreenTheme nav form input[type='search'] {
 			background-color: rgba(0,0,0,0);
 			border: none;
 			color: rgba(255,255,255,1);
 			font-family: sans-serif;
 			font-size: 28pt;
 			width: 100%; }
-		body.green40E080Theme nav ul {
+		body.styleSimpleGreenTheme nav ul {
 			margin: 0px;
 			padding: 0px; }
-		body.green40E080Theme nav ul li { list-style-type: none; }
-		body.green40E080Theme nav ul li a {
+		body.styleSimpleGreenTheme nav ul li { list-style-type: none; }
+		body.styleSimpleGreenTheme nav ul li a {
 			color: rgba(255,255,255,1);
 			display: block;
 			font-family: sans-serif;
@@ -187,13 +212,13 @@
 			transition:
 				background-color 0.5s,
 				text-indent 0.5s; }
-		body.green40E080Theme nav ul li a.activeTrigger {
+		body.styleSimpleGreenTheme nav ul li a.activeTrigger {
 			background-color: rgba(24,172,72,1);
 			text-indent: 1em;
 			transition:
 				background-color 0.2s,
 				text-indent 0.2s;}
-		body.green40E080Theme nav ul li a:hover {
+		body.styleSimpleGreenTheme nav ul li a:hover {
 			background-color: rgba(16,160,64,1);
 			text-indent: 1em;
 			transition:
@@ -214,25 +239,44 @@
 	</nav>
 	<main id='mainScreen'>
 		<div id='administrationScreen'>
-			<h1>Initialisation</h1>
-			<form>
-				<input type='text' placeholder='Name'>
-				<input type='password' placeholder='Password'>
-				<input type='email' placeholder='Email'>
-				<button id='initialisationButton'>Initialise</button>
-			</form>
+			<section>
+				<h1>Initialisation</h1>
+				<form>
+					<input id='initialName' placeholder='Name' type='text'>
+					<input id='initialPassword' placeholder='Password' type='password'>
+					<input id='initialEmail' placeholder='Email' type='email'>
+					<button id='initialisationButton'>Initialise</button>
+				</form>
+			</section>
 		</div>
 		<div id='browserScreen'>
 		</div>
 		<div id='preferencesScreen'>
-			<h1>Authentication</h1>
-			<form>
-				<input type='number' placeholder='Identifier'>
-				<input type='text' placeholder='Name'>
-				<input type='password' placeholder='Password'>
-			</form>
+			<section>
+				<h1>Authentication</h1>
+				<form>
+					<input id='authenticationIdentifier' placeholder='Identifier' type='number'>
+					<input id='authenticationName' placeholder='Name' type='text'>
+					<input id='authenticationPassword' placeholder='Password' type='password'>
+				</form>
+			</section>
+			<section>
+				<h1>Style</h1>
+				<form>
+					<ul id='themeClassTriggers'>
+						<li><button>Simple Green Theme</button></li>
+						<li><button>No Theme</button></li>
+					</ul>
+				</form>
+			</section>
 		</div>
 		<div id='uploadScreen'>
+			<section>
+				<h1>File Upload</h1>
+				<form>
+					<input id='uploadFile' type='file'>
+				</form>
+			</section>
 		</div>
 	</main>
 </body>
