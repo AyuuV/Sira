@@ -1,5 +1,6 @@
 <?php
 $_SIRA = parse_ini_file('../Configuration/Sira.ini',true);
+$InitialDateTime = date('Y-m-d H:i:s');
 $MySQL = new mysqli($_SIRA['MYSQL']['HOST'],$_SIRA['MYSQL']['USER'],$_SIRA['MYSQL']['PASS']);
 if($MySQL->connect_error) {
 	http_response_code(intval($_SIRA['RESPONSE']['CONNECT_FAIL']));
@@ -8,6 +9,11 @@ if($MySQL->connect_error) {
 	echo ', ';
 	echo $MySQL->connect_error;
 	exit(intval($_SIRA['FAILURE']['CONNECT'])); }
+if(!($DateTime=$MySQL->escape_string($InitialDateTime))) {
+	http_response_code(intval($_SIRA['RESPONSE']['SYSTEM_FAIL']));
+	echo 'System Error';
+	$MySQL->close();
+	exit(intval($_SIRA['FAILURE']['SYSTEM'])); }
 
 if($_SERVER['REQUEST_METHOD']==='POST'&&isset($_POST)) {
 	if(isset($_POST[$_SIRA['REQUEST']['INITIALISE']])) {
@@ -55,7 +61,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'&&isset($_POST)) {
 			else { $Initialisation['Pass'] = $MySQL->escape_string($_SIRA['DEFAULT_ADMIN']['PASS']); }
 			if(isset($Initialisation['EmailAddress'])) { $Initialisation['EmailAddress'] = $MySQL->escape_string($Initialisation['EmailAddress']); }
 			else { $Initialisation['EmailAddress'] = $MySQL->escape_string($_SIRA['DEFAULT_ADMIN']['MAIL']); }
-			if(!($MySQL->query("INSERT INTO U (I,N,P,EMA,AC) VALUES ($Initialisation[Identifier],'$Initialisation[Name]','$Initialisation[Pass]','$Initialisation[EmailAddress]',18446744073709551615)"))) {
+			if(!($MySQL->query("INSERT INTO U (I,N,P,EMA,AC,CDT) VALUES ($Initialisation[Identifier],'$Initialisation[Name]','$Initialisation[Pass]','$Initialisation[EmailAddress]',18446744073709551615,'$DateTime')"))) {
 				http_reponse_code(intval($_SIRA['RESPONSE']['USER_MODIFICATION_FAIL']));
 				echo 'MySQL User Modification Failure: ';
 				echo $MySQL->errno;
