@@ -51,21 +51,27 @@
 			return; }
 		var funcInitialiseAdministration = function() {
 			var varEmail = document.getElementById('initialEmail');
+			var varInitButton = document.getElementById('initialisationButton');
 			var varName = document.getElementById('initialName');
 			var varPassword = document.getElementById('initialPassword');
-			document.getElementById('initialisationButton').addEventListener('click',function() {
+			var funcInitialiseDatabase = function() {
 				var varFormData = new FormData;
+				varInitButton.disabled = true;
 				varFormData.append('Init',JSON.stringify({
 					'Identifier' : document.getElementById('initialIdentifier').value,
 					'Name' : document.getElementById('initialName').value,
 					'Pass' : document.getElementById('initialPassword').value,
 					'EmailAddress' : document.getElementById('initialEmail').value }));
-				funcRetrieve(document.getElementById('initialisationProgress'),varFormData,function(varRequest,varDownload) {
-					if(varDownload) {
-						console.log(varRequest.status.toString()+': '+varRequest.response);
-					}
+				funcRetrieve(document.getElementById('initialisationProgress'),varFormData,function(varRequest,varDownload,varFailure) {
+					if(varDownload&&!varFailure) {
+						if(Math.floor(varRequest.status/100)==2) { varStatus.classList.add('initSuccess'); }
+						else { varStatus.classList.add('initFail'); } }
+					varInitButton.disabled = false;
 					return; },'POST');
-				return; });
+				varStatus.classList.remove('initFail');
+				varStatus.classList.remove('initSuccess');
+				return; }
+			varInitButton.addEventListener('click',funcInitialiseDatabase);
 			return; }
 		var funcRetrieve = function(varDisplay,varData=null,varFunction=null,varMethod='GET',varMode='text',varResource='/ApplicationProgrammingInterface.php') {
 			var varRequest = new XMLHttpRequest;
@@ -75,17 +81,19 @@
 				if(varDisplay) {
 					varDisplay.classList.add('downloadAbort');
 					varDisplay.classList.remove('downloadProgress'); }
+				if(varFunction) { varFunction(varRequest,true,true); }
 				return; });
 			varRequest.addEventListener('error',function() {
 				if(varDisplay) {
 					varDisplay.classList.add('downloadError');
 					varDisplay.classList.remove('downloadProgress'); }
+				if(varFunction) { varFunction(varRequest,true,true); }
 				return; });
 			varRequest.addEventListener('load',function() {
 				if(varDisplay) {
 					varDisplay.classList.add('downloadSuccess');
 					varDisplay.classList.remove('downloadProgress'); }
-				if(varFunction) { varFunction(varRequest,true); }
+				if(varFunction) { varFunction(varRequest,true,false); }
 				return; });
 			varRequest.addEventListener('progress',function(varEvent) {
 				if(varEvent.lengthComputable&&varDisplay) {
@@ -97,17 +105,19 @@
 				if(varDisplay) {
 					varDisplay.classList.add('uploadAbort');
 					varDisplay.classList.remove('uploadProgress'); }
+				if(varFunction) { varFunction(varRequest,false,true); }
 				return; });
 			varRequest.upload.addEventListener('error',function() {
 				if(varDisplay) {
 					varDisplay.classList.add('uploadError');
 					varDisplay.classList.remove('uploadProgress'); }
+				if(varFunction) { varFunction(varRequest,false,true); }
 				return; });
 			varRequest.upload.addEventListener('load',function() {
 				if(varDisplay) {
 					varDisplay.classList.add('uploadSuccess');
 					varDisplay.classList.remove('uploadProgress'); }
-				if(varFunction) { varFunction(varRequest,false); }
+				if(varFunction) { varFunction(varRequest,false,false); }
 				return; });
 			varRequest.upload.addEventListener('progress',function(varEvent) {
 				if(varEvent.lengthComputable&&varDisplay) {
@@ -241,6 +251,23 @@
 			margin: 0px;
 			padding: 4px 0px;
 			text-indent: 2em; }
+		body.styleSimpleGreenTheme main div section progress {
+			background-color: rgba(0,0,0,0);
+			border: none;
+			color: rgba(255,255,255,1);
+			display: block;
+			height: 12px;
+			position: relative;
+			width: 100%; }
+		body.styleSimpleGreenTheme main div section progress span {
+			font-family: sans-serif;
+			font-size: 12px;
+			height: 100%;
+			left: 0px;
+			position: absolute;
+			top: 0px;
+			width: 100%;
+			z-index: 100; }
 		body.styleSimpleGreenTheme nav {
 			background-color: rgba(32,192,96,1);
 			bottom: 0px;
