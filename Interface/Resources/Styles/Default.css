@@ -1,0 +1,32 @@
+body {
+	background-color: rgba(255,255,255,1);
+	color: rgba(0,0,0,1);
+	font-family: sans-serif;
+	font-size: 12pt;
+	margin: 0px;
+	padding: 0px; }
+
+body > nav {
+	background-color: rgba(0,0,0,1);
+	margin: 0px;
+	padding: 0px; }
+
+body > nav > ul {
+	margin: 0px;
+	padding: 0px;
+	text-align: left; }
+
+body > nav > ul > li {
+	display: inline-block;
+	list-style-type: none;
+	width: 128px; }
+
+body > nav > ul > li > a {
+	color: rgba(255,255,255,1);
+	display: block;
+	text-decoration: none;
+}
+
+body > nav > ul > li > a > span {
+	display: none;
+	text-align: center; }

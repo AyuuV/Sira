@@ -1,0 +1,4 @@
+body[lang|=en] > nav > ul > li > a > span[lang|=en] { display: block; }
+body[lang|=de] > nav > ul > li > a > span[lang|=de] { display: block; }
+body[lang|=ja] > nav > ul > li > a > span[lang|=ja] { display: block; }
+body[lang|=ru] > nav > ul > li > a > span[lang|=ru] { display: block; }
