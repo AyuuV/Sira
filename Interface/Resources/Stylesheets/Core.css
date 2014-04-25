@@ -3,18 +3,39 @@
 body {
 	background-color: rgba(255,255,255,1);
 	color: rgba(0,0,0,1);
+	display: flex;
+	flex-flow: column nowrap;
 	font-family: sans-serif;
 	font-size: 12pt;
 	margin: 0px;
-	padding: 0px; }
+	padding: 0px;
+	width: 100%; }
+
+body > header {
+	background-color: rgba(0,0,0,1);
+	display: flex;
+	flex-flow: row nowrap;
+	font-size: 9pt;
+	font-variant: small-caps;
+	justify-content: flex-end; }
+
+body > header > form {
+	display: flex;
+	flex: 1 0 0%;
+	flex-flow: row nowrap;
+	justify-content: flex-end;
+	text-align: right; }
+
+body > header > form > button { width: 128px; }
+
+body > header > form > input[type='search'] { flex: 1 0 0%; }
 
 body > header > nav {
-	background-color: rgba(0,0,0,1);
 	margin: 0px;
 	padding: 0px; }
 
 body > header > nav > ul {
-	margin: 0px;
+	margin: 0px 16px 0px 0px;
 	padding: 0px;
 	text-align: left; }
 
