@@ -8,27 +8,26 @@ body {
 	margin: 0px;
 	padding: 0px; }
 
-body > nav {
+body > header > nav {
 	background-color: rgba(0,0,0,1);
 	margin: 0px;
 	padding: 0px; }
 
-body > nav > ul {
+body > header > nav > ul {
 	margin: 0px;
 	padding: 0px;
 	text-align: left; }
 
-body > nav > ul > li {
+body > header > nav > ul > li {
 	display: inline-block;
 	list-style-type: none;
 	width: 128px; }
 
-body > nav > ul > li > a {
+body > header > nav > ul > li > a {
 	color: rgba(255,255,255,1);
 	display: block;
-	text-decoration: none;
-}
+	text-decoration: none; }
 
-body > nav > ul > li > a > span {
+body > header > nav > ul > li > a > span {
 	display: none;
 	text-align: center; }
