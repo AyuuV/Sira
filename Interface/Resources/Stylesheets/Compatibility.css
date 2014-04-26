@@ -16,6 +16,8 @@ body > header > form {
 	-ms-flex: 1 0 0%;
 	-webkit-flex: 1 0 0%; }
 
+body > header > form > button { -webkit-appearance: none; }
+
 body > header > form > input[type='search'] {
 	-ms-flex: 1 0 0%;
 	-webkit-flex: 1 0 0%; }

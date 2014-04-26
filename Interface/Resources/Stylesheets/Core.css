@@ -28,6 +28,7 @@ body > header > form {
 	text-align: right; }
 
 body > header > form > button {
+	appearance: none;
 	background-color: rgba(0,0,0,0);
 	border: none;
 	color: rgba(255,255,255,1);
@@ -39,9 +40,16 @@ body > header > form > button {
 	padding: 0px;
 	width: 128px; }
 
+body > header > form > button > span {
+	display: none;
+	height: 100%;
+	text-align: center; }
+
 body > header > form > input[type='search'] {
+	appearance: none;
 	background-color: rgba(0,0,0,0);
 	border: none;
+	border-radius: none;
 	color: rgba(255,255,255,1);
 	display: block;
 	flex: 1 0 0%;
