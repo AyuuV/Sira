@@ -8,17 +8,19 @@ body {
 body > header {
 	display: -webkit-flex;
 	-webkit-flex-flow: row nowrap;
-	-webkit-justify-content: flex-end;
-}
+	-webkit-justify-content: flex-end; }
 
 body > header > form {
 	display: -webkit-flex;
 	-webkit-flex-flow: row nowrap;
-	-webkit-justify-content: flex-end;
 	-ms-flex: 1 0 0%;
 	-webkit-flex: 1 0 0%; }
-
 
 body > header > form > input[type='search'] {
 	-ms-flex: 1 0 0%;
 	-webkit-flex: 1 0 0%; }
+
+body > header > nav > ul {
+	display: -webkit-flex;
+	-webkit-flow: row nowrap;
+}
