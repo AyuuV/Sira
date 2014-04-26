@@ -1,6 +1,26 @@
 @charset 'UTF-8';
 
-body {
+body > header { display: -webkit-flex; }
+
+body > header > form {
 	display: -webkit-flex;
-	-webkit-flex-flow: column nowrap;
-	-webkit-justify-content: center; }
+	-moz-appearance: none;
+	-webkit-flex: 1 0 0%; }
+
+body > header > form > button {
+	-moz-appearance: none;
+	-webkit-appearance: none; }
+
+body > header > form > input[type='search'] {
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	-webkit-flex: 1 0 0%; }
+
+body > header > nav > ul {
+	display: -webkit-flex;
+	-moz-appearance: none;
+	-webkit-appearance: none; }
+
+body > header > nav > ul > li {
+	-moz-appearance: none;
+	-webkit-appearance: none; }

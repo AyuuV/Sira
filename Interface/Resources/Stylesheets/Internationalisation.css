@@ -1,11 +1,15 @@
 @charset 'UTF-8';
 
-body[lang|='de'] > header > form > button > span[lang|='de'] { display: block; }
-body[lang|='en'] > header > form > button > span[lang|='en'] { display: block; }
-body[lang|='ja'] > header > form > button > span[lang|='ja'] { display: block; }
-body[lang|='ru'] > header > form > button > span[lang|='ru'] { display: block; }
+body > header > form > button > span { display: none; }
 
-body[lang|='de'] > header > nav > ul > li > a > span[lang|='de'] { display: block; }
-body[lang|='en'] > header > nav > ul > li > a > span[lang|='en'] { display: block; }
-body[lang|='ja'] > header > nav > ul > li > a > span[lang|='ja'] { display: block; }
-body[lang|='ru'] > header > nav > ul > li > a > span[lang|='ru'] { display: block; }
+body[lang|='de'] > header > form > button > span[lang|='de'] { display: inline; }
+body[lang|='en'] > header > form > button > span[lang|='en'] { display: inline; }
+body[lang|='ja'] > header > form > button > span[lang|='ja'] { display: inline; }
+body[lang|='ru'] > header > form > button > span[lang|='ru'] { display: inline; }
+
+body > header > nav > ul > li > a > span { display: none; }
+
+body[lang|='de'] > header > nav > ul > li > a > span[lang|='de'] { display: inline; }
+body[lang|='en'] > header > nav > ul > li > a > span[lang|='en'] { display: inline; }
+body[lang|='ja'] > header > nav > ul > li > a > span[lang|='ja'] { display: inline; }
+body[lang|='ru'] > header > nav > ul > li > a > span[lang|='ru'] { display: inline; }
