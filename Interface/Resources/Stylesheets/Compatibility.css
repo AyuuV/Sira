@@ -1,5 +1,9 @@
 @charset 'UTF-8';
 
+button::-moz-focus-inner {
+	border: 0px;
+	padding: 0px; }
+
 body > header { display: -webkit-flex; }
 
 body > header > form {
