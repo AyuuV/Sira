@@ -38,7 +38,7 @@ body > header > form > button {
 body > header > form > input[type='search'] {
 	background-color: rgba(0,0,0,0);
 	border: none;
-	color: rgba(255,255,255,1);
+	color: inherit;
 	display: block;
 	flex: 1 0 0%;
 	font-family: inherit;
@@ -46,8 +46,6 @@ body > header > form > input[type='search'] {
 	font-variant: small-caps;
 	margin: 0px;
 	padding: 0px; }
-
-body > header > form > input[type='search']:focus { outline: none; }
 
 body > header > nav > ul {
 	display: flex;

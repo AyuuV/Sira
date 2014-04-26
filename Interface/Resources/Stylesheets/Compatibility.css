@@ -20,6 +20,8 @@ body > header > form > input[type='search'] {
 	-webkit-appearance: none;
 	-webkit-flex: 1 0 0%; }
 
+body > header > form > input[type='search']:focus { outline: none; }
+
 body > header > nav > ul {
 	display: -webkit-flex;
 	-moz-appearance: none;
