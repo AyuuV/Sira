@@ -8,6 +8,7 @@ body > header { display: -webkit-flex; }
 
 body > header > form {
 	display: -webkit-flex;
+	-webkit-flex-flow: row wrap;
 	-moz-appearance: none;
 	-webkit-flex: 1 0 0%; }
 
@@ -21,6 +22,22 @@ body > header > form > input[type='search'] {
 	-webkit-flex: 1 0 0%; }
 
 body > header > form > input[type='search']:focus { outline: none; }
+
+body > header > form > progress {
+	appearance: none;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	-webkit-flex: 1 0 100%; }
+
+body > header > form > progress::-moz-progress-bar { background-color: rgba(255,255,255,1); }
+
+body > header > form > progress::-webkit-progress-bar { background-color: rgba(0,0,0,0); }
+
+body > header > form > progress::-webkit-progress-value { background-color: rgba(255,255,255,1); }
+
+body > header > form > progress:not([value])::-moz-progress-bar { background-color: rgba(0,0,0,0); }
+
+body > header > form > progress:not([value])::-webkit-progress-value { background-color: rgba(0,0,0,0); }
 
 body > header > nav > ul {
 	display: -webkit-flex;
