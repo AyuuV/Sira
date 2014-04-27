@@ -1,1 +1,15 @@
 @charset 'UTF-8';
+
+body > header > form > button { transition: border-top 1s; }
+
+body > header > form > button:hover { transition: border-top 0.2s; }
+
+body > header > form > progress[value],
+body > header > form > progress:not([value]) { transition: opacity 0.2s; }
+
+body > header > form > progress[value='1'] { transition: opacity 1s; }
+
+body > header > nav > ul > li > a { transition: border-top 1s; }
+
+body > header > nav > ul > li > a.activeLink,
+body > header > nav > ul > li > a:hover { transition: border-top 0.2s; }

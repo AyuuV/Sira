@@ -15,8 +15,7 @@ body > header {
 	background-color: rgba(0,0,0,1);
 	color: rgba(255,255,255,1);
 	display: flex;
-	font-size: 9pt;
-	padding: 1px; }
+	font-size: 9pt; }
 
 body > header > form {
 	display: flex;
@@ -28,6 +27,7 @@ body > header > form {
 body > header > form > button {
 	background-color: rgba(0,0,0,0);
 	border: none;
+	border-top: 1px solid rgba(0,0,0,0);
 	color: rgba(255,255,255,1);
 	display: block;
 	font-family: inherit;
@@ -36,6 +36,8 @@ body > header > form > button {
 	margin: 0px;
 	padding: 0px;
 	width: 128px; }
+
+body > header > form > button:hover { border-top: 1px solid rgba(255,255,255,1); }
 
 body > header > form > input[type='search'] {
 	background-color: rgba(0,0,0,0);
@@ -54,9 +56,13 @@ body > header > form > progress {
 	border: none;
 	color: rgba(255,255,255,1);
 	flex: 1 0 100%;
-	height: 1px; }
+	height: 1px;
+	opacity: 1;
+	position: relative;
+	top: -1px; }
 
-body > header > form > progress:not([value]) { color: rgba(0,0,0,1); }
+body > header > form > progress[value='1'],
+body > header > form > progress:not([value]) { opacity: 0; }
 
 body > header > nav > ul {
 	display: flex;
@@ -69,9 +75,14 @@ body > header > nav > ul > li {
 	width: 128px; }
 
 body > header > nav > ul > li > a {
+	border-top: 1px solid rgba(0,0,0,0);
 	color: inherit;
+	cursor: default;
 	display: block;
 	font-variant: small-caps;
 	text-align: center;
 	text-decoration: none;
 	width: 100%; }
+
+body > header > nav > ul > li > a.activeLink,
+body > header > nav > ul > li > a:hover { border-top: 1px solid rgba(255,255,255,1); }
