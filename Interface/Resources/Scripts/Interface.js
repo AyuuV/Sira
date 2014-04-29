@@ -1,11 +1,15 @@
 var interfaceHashChange = function() {
 	var currentLocation = location.hash.split('/');
+	var elementsList = document.getElementById('interfacesParent');
 	var navLinksList = document.getElementById('navLinksList');
-	if(currentLocation) { appearanceHighlightActiveNavLink(navLinksList.getElementsByTagName('a'),currentLocation[0],'activeLink'); }
+	if(currentLocation) {
+		appearanceHighlightActiveLinks(navLinksList.getElementsByTagName('a'),currentLocation[0],'activeLink');
+		appearanceHighlightActiveElements(elementsList.children,'locationIdentifier',currentLocation[0],'activeInterface'); }
 	return; }
 
 var interfaceInitialise = function() {
-	if(!location.hash) { location.hash='#!'; }
+	if(!location.hash.length) { location.hash='#!'; }
+	window.dispatchEvent(new HashChangeEvent('hashchange'));
 	return; }
 
 window.addEventListener('hashchange',interfaceHashChange);

@@ -14,7 +14,7 @@
 <body lang='en'>
 	<header>
 		<form>
-			<input type='search'>
+			<input id='searchInput' type='search'>
 			<button>
 				<span lang='de'>Suche</span>
 				<span lang='en'>Search</span>
@@ -52,5 +52,33 @@
 			</ul>
 		</nav>
 	</header>
+	<main id='interfacesParent'>
+		<div data-location-identifier='#.'>
+			<section>
+				<h1>
+					<span lang='de'>Authentifizierungsinformationen</span>
+					<span lang='en'>Authentication Credentials</span>
+					<span lang='ja'>認証資格情報</span>
+					<span lang='ru'>Полномочия аутентификации</span>
+				</h1>
+				<form>
+					<input id='authenticationIdentifier' type='number'>
+				</form>
+			</section>
+		</div>
+		<div data-location-identifier='#!'>
+			<section>
+				<h1>
+					<span lang='de'>Datei-Upload</span>
+					<span lang='en'>File Upload</span>
+					<span lang='ja'>ファイルのアップロード</span>
+					<span lang='ru'>Загрузка файлов</span>
+				</h1>
+				<form>
+					<input id='fileUploadInput' type='file'>
+				</form>
+			</section>
+		</div>
+	</main>
 </body>
 </html>

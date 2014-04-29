@@ -13,3 +13,10 @@ body[lang|='de'] > header > nav > ul > li > a > span[lang|='de'] { display: inli
 body[lang|='en'] > header > nav > ul > li > a > span[lang|='en'] { display: inline; }
 body[lang|='ja'] > header > nav > ul > li > a > span[lang|='ja'] { display: inline; }
 body[lang|='ru'] > header > nav > ul > li > a > span[lang|='ru'] { display: inline; }
+
+body > main > div > section > h1 > span { display: none; }
+
+body[lang|='de'] > main > div > section > h1 > span[lang|='de'] { display: inline; }
+body[lang|='en'] > main > div > section > h1 > span[lang|='en'] { display: inline; }
+body[lang|='ja'] > main > div > section > h1 > span[lang|='ja'] { display: inline; }
+body[lang|='ru'] > main > div > section > h1 > span[lang|='ru'] { display: inline; }

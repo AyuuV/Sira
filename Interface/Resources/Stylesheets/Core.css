@@ -1,21 +1,19 @@
 @charset 'UTF-8';
 
 body {
-	background-color: rgba(255,255,255,1);
-	color: rgba(0,0,0,1);
+	background-color: rgba(255,255,255,0.75);
+	color: rgba(0,0,0,0.75);
 	font-family: sans-serif;
-	font-size: 12pt;
+	font-size: 9pt;
 	margin: 0px;
 	min-height: 480px;
 	min-width: 640px;
 	padding: 0px; }
 
-
 body > header {
-	background-color: rgba(0,0,0,1);
-	color: rgba(255,255,255,1);
-	display: flex;
-	font-size: 9pt; }
+	background-color: rgba(0,0,0,0.75);
+	color: rgba(255,255,255,0.75);
+	display: flex; }
 
 body > header > form {
 	display: flex;
@@ -28,7 +26,7 @@ body > header > form > button {
 	background-color: rgba(0,0,0,0);
 	border: none;
 	border-top: 1px solid rgba(0,0,0,0);
-	color: rgba(255,255,255,1);
+	color: rgba(255,255,255,0.75);
 	display: block;
 	font-family: inherit;
 	font-size: inherit;
@@ -37,7 +35,7 @@ body > header > form > button {
 	padding: 0px;
 	width: 128px; }
 
-body > header > form > button:hover { border-top: 1px solid rgba(255,255,255,1); }
+body > header > form > button:hover { border-top: 1px solid rgba(255,255,255,0.75); }
 
 body > header > form > input[type='search'] {
 	background-color: rgba(0,0,0,0);
@@ -54,7 +52,7 @@ body > header > form > input[type='search'] {
 body > header > form > progress {
 	background-color: rgba(0,0,0,0);
 	border: none;
-	color: rgba(255,255,255,1);
+	color: rgba(255,255,255,0.75);
 	flex: 1 0 100%;
 	height: 1px;
 	opacity: 1;
@@ -85,4 +83,42 @@ body > header > nav > ul > li > a {
 	width: 100%; }
 
 body > header > nav > ul > li > a.activeLink,
-body > header > nav > ul > li > a:hover { border-top: 1px solid rgba(255,255,255,1); }
+body > header > nav > ul > li > a:hover { border-top: 1px solid rgba(255,255,255,0.75); }
+
+body > main { position: relative; }
+
+body > main > div {
+	left: 0px;
+	margin: 0px;
+	opacity: 0;
+	padding: 0px;
+	pointer-events: none;
+	position: absolute;
+	top: 0px;
+	width: 100%;
+	z-index: 0; }
+
+body > main > div.activeInterface {
+	opacity: 1;
+	pointer-events: auto;
+	z-index: 10; }
+
+body > main > div > section {
+	border: 1px solid rgba(0,0,0,0.75);
+	border-bottom: none;
+	border-top: none;
+	margin: auto;
+	max-width: 798px;
+	padding: 0px; }
+
+body > main > div > section:last-child { border-bottom: 1px solid rgba(0,0,0,0.75); }
+
+body > main > div > section > h1 {
+	background-color: rgba(0,0,0,0.75);
+	color: rgba(255,255,255,0.75);
+	font-size: inherit;
+	font-variant: small-caps;
+	font-weight: inherit;
+	margin: 0px;
+	padding: 0px;
+	text-indent: 64px; }
