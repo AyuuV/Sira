@@ -8,4 +8,3 @@ var interfaceInitialise = function() {
 
 window.addEventListener('hashchange',interfaceHashChange);
 window.addEventListener('load',interfaceInitialise);
-

@@ -88,30 +88,51 @@ body > header > nav > ul > li > a:hover { border-top: 1px solid rgba(255,255,255
 body > main { position: relative; }
 
 body > main > div {
+	border: 1px solid rgba(0,0,0,0.75);
+	border-top: none;
 	left: 0px;
-	margin: 0px;
+	margin: 0px auto;
+	max-width: 798px;
 	opacity: 0;
 	padding: 0px;
 	pointer-events: none;
 	position: absolute;
+	right: 0px;
 	top: 0px;
 	width: 100%;
 	z-index: 0; }
 
-body > main > div.activeInterface {
+body > main > div.activeSection {
 	opacity: 1;
 	pointer-events: auto;
 	z-index: 10; }
 
-body > main > div > section {
-	border: 1px solid rgba(0,0,0,0.75);
-	border-bottom: none;
-	border-top: none;
-	margin: auto;
-	max-width: 798px;
+body > main > div > nav {
+	background-color: rgba(0,0,0,0.75);
+	color: rgba(255,255,255,0.75); }
+
+body > main > div > nav > ul {
+	display: flex;
+	margin: 0px;
 	padding: 0px; }
 
-body > main > div > section:last-child { border-bottom: 1px solid rgba(0,0,0,0.75); }
+body > main > div > nav > ul > li {
+	display: block;
+	list-style-type: none;
+	width: 128px; }
+
+body > main > div > nav > ul > li > a {
+	border-top: 1px solid rgba(0,0,0,0);
+	color: inherit;
+	cursor: default;
+	display: block;
+	font-variant: small-caps;
+	text-align: center;
+	text-decoration: none;
+	width: 100%; }
+
+body > main > div > nav > ul > li > a.activeLink,
+body > main > div > nav > ul > li > a:hover { border-top: 1px solid rgba(255,255,255,0.75); }
 
 body > main > div > section > h1 {
 	background-color: rgba(0,0,0,0.75);

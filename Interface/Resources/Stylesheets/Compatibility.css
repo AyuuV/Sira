@@ -47,3 +47,12 @@ body > header > nav > ul {
 body > header > nav > ul > li {
 	-moz-appearance: none;
 	-webkit-appearance: none; }
+
+body > main > div > nav > ul {
+	display: -webkit-flex;
+	-moz-appearance: none;
+	-webkit-appearance: none; }
+
+body > main > div > nav > ul > li {
+	-moz-appearance: none;
+	-webkit-appearance: none; }

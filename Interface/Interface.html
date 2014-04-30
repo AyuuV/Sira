@@ -24,7 +24,7 @@
 			<progress></progress>
 		</form>
 		<nav>
-			<ul id='navLinksList'>
+			<ul id='mainNavLinks'>
 				<li>
 					<a href='#_'>
 						<span lang='de'>Verwaltung</span>
@@ -52,7 +52,7 @@
 			</ul>
 		</nav>
 	</header>
-	<main id='interfacesParent'>
+	<main id='interfaceParent'>
 		<div data-location-identifier='#.'>
 			<section>
 				<h1>
@@ -66,14 +66,20 @@
 				</form>
 			</section>
 		</div>
-		<div data-location-identifier='#!'>
-			<section>
-				<h1>
-					<span lang='de'>Datei-Upload</span>
-					<span lang='en'>File Upload</span>
-					<span lang='ja'>ファイルのアップロード</span>
-					<span lang='ru'>Загрузка файлов</span>
-				</h1>
+		<div data-location-identifier='#!' data-nav-menu='uploadNavLinks'>
+			<nav>
+				<ul id='uploadNavLinks'>
+					<li>
+						<a href='#!/file'>
+							<span lang='de'>Datei-Upload</span>
+							<span lang='en'>File Upload</span>
+							<span lang='ja'>ファイルのアップロード</span>
+							<span lang='ru'>Загрузка файлов</span>
+						</a>
+					</li>
+				</ul>
+			</nav>
+			<section data-location-identifier='file'>
 				<form>
 					<input id='fileUploadInput' type='file'>
 				</form>
