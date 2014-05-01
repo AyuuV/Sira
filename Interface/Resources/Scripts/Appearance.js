@@ -6,13 +6,12 @@ var appearanceHashChange = function() {
 		var builtLocation = currentLocation[0];
 		appearanceHighlightActiveLinks(navLinksList.getElementsByTagName('a'),currentLocation[0],'activeLink');
 		for(var index=0;index<currentLocation.length;index++) {
-			if((elementsList=appearanceHighlightActiveElements(elementsList.children,'locationIdentifier',currentLocation[index],'activeSection'))) {
-				if(elementsList[0].dataset.navMenu) {
-					doc
-				}
-			}
-		}
-	}
+			var activeElement = appearanceHighlightActiveElements(elementsList.children,'locationIdentifier',currentLocation[index],'activeSection');
+			builtLocation += '/'+currentLocation[index+1];
+			if(activeElement) {
+				var navMenu = activeElement.dataset.navMenu;
+				if(navMenu) { appearanceHighlightActiveLinks(document.getElementById(navMenu).getElementsByTagName('a'),builtLocation,'activeLink'); } }
+			elementsList = activeElement; } }
 	return; }
 
 var appearanceHighlightActiveElements = function(elementList,dataAttribute,activeState,activeClass) {
