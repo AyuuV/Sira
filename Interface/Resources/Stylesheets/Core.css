@@ -88,11 +88,9 @@ body > header > nav > ul > li > a:hover { border-top: 1px solid rgba(255,255,255
 body > main { position: relative; }
 
 body > main > div {
-	border: 1px solid rgba(0,0,0,0.75);
-	border-top: none;
 	left: 0px;
 	margin: 0px auto;
-	max-width: 798px;
+	max-width: 800px;
 	opacity: 0;
 	padding: 0px;
 	pointer-events: none;
@@ -109,7 +107,8 @@ body > main > div.activeSection {
 
 body > main > div > nav {
 	background-color: rgba(0,0,0,0.75);
-	color: rgba(255,255,255,0.75); }
+	color: rgba(255,255,255,0.75);
+	padding: 0px 1px;}
 
 body > main > div > nav > ul {
 	display: flex;
@@ -134,12 +133,21 @@ body > main > div > nav > ul > li > a {
 body > main > div > nav > ul > li > a.activeLink,
 body > main > div > nav > ul > li > a:hover { border-top: 1px solid rgba(255,255,255,0.75); }
 
-body > main > div > section > h1 {
-	background-color: rgba(0,0,0,0.75);
-	color: rgba(255,255,255,0.75);
-	font-size: inherit;
-	font-variant: small-caps;
-	font-weight: inherit;
-	margin: 0px;
-	padding: 0px;
-	text-indent: 64px; }
+body > main > div > div { position: relative; }
+
+body > main > div > div > section {
+	border: 1px solid rgba(0,0,0,0.75);
+	left: 0px;
+	opacity: 0;
+	pointer-events: none;
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	z-index: 0; }
+
+body > main > div > div > section.activeSection {
+	opacity: 1;
+	pointer-events: auto;
+	z-index: 10; }
+
+

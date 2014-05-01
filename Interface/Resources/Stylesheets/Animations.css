@@ -23,3 +23,8 @@ body > main > div > nav > ul > li > a { transition: border-top 1s; }
 
 body > main > div > nav > ul > li > a.activeLink,
 body > main > div > nav > ul > li > a:hover { transition: border-top 0.2s; }
+
+body > main > div > div > section { transition:
+	opacity 1s,
+	pointer-events 1s,
+	z-index 1s; }

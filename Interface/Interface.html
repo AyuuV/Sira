@@ -23,8 +23,8 @@
 			</button>
 			<progress></progress>
 		</form>
-		<nav>
-			<ul id='mainNavLinks'>
+		<nav id='mainNav'>
+			<ul>
 				<li>
 					<a href='#_'>
 						<span lang='de'>Verwaltung</span>
@@ -42,7 +42,7 @@
 					</a>
 				</li>
 				<li>
-					<a href='#!/file'>
+					<a href='#!'>
 						<span lang='de'>Laden</span>
 						<span lang='en'>Upload</span>
 						<span lang='ja'>アップロード</span>
@@ -53,22 +53,30 @@
 		</nav>
 	</header>
 	<main id='interfaceParent'>
-		<div data-location-identifier='#.'>
-			<section>
-				<h1>
-					<span lang='de'>Authentifizierungsinformationen</span>
-					<span lang='en'>Authentication Credentials</span>
-					<span lang='ja'>認証資格情報</span>
-					<span lang='ru'>Полномочия аутентификации</span>
-				</h1>
-				<form>
-					<input id='authenticationIdentifier' type='number'>
-				</form>
-			</section>
+		<div data-location-identifier='#.' data-nav-menu='preferencesNav' data-target-section='preferencesInterface'>
+			<nav id='preferencesNav'>
+				<ul>
+					<li>
+						<a href='#./authentication'>
+							<span lang='de'>Beglaubigung</span>
+							<span lang='en'>Authentication</span>
+							<span lang='ja'>認証</span>
+							<span lang='ru'>идентификация</span>
+						</a>
+					</li>
+				</ul>
+			</nav>
+			<div id='preferencesInterface'>
+				<section data-location-identifier='authentication'>
+					<form>
+						<input id='authenticationIdentifier' type='number'>
+					</form>
+				</section>
+			</div>
 		</div>
-		<div data-location-identifier='#!' data-nav-menu='uploadNavLinks'>
-			<nav>
-				<ul id='uploadNavLinks'>
+		<div data-location-identifier='#!' data-nav-menu='uploadNav' data-target-section='uploadInterface'>
+			<nav id='uploadNav'>
+				<ul>
 					<li>
 						<a href='#!/file'>
 							<span lang='de'>Datei-Upload</span>
@@ -79,11 +87,13 @@
 					</li>
 				</ul>
 			</nav>
-			<section data-location-identifier='file'>
-				<form>
-					<input id='fileUploadInput' type='file'>
-				</form>
-			</section>
+			<div id='uploadInterface'>
+				<section data-location-identifier='file'>
+					<form>
+						<input id='fileUploadInput' type='file'>
+					</form>
+				</section>
+			</div>
 		</div>
 	</main>
 </body>

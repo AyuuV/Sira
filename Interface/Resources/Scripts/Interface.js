@@ -2,7 +2,7 @@ var interfaceHashChange = function() {
 	return; }
 
 var interfaceInitialise = function() {
-	if(!location.hash.length) { location.hash='#!/file'; }
+	if(!location.hash.length) { location.hash='#./authentication'; }
 	window.dispatchEvent(new HashChangeEvent('hashchange'));
 	return; }
 
