@@ -150,4 +150,14 @@ body > main > div > div > section.activeSection {
 	pointer-events: auto;
 	z-index: 10; }
 
+body > main > div > div > section > form { padding: 0px 1em; }
 
+body > main > div > div > section > form > input {
+	background-color: rgba(0,0,0,0);
+	border: none;
+	color: inherit;
+	display: block;
+	font-family: inherit;
+	font-size: inherit;
+	padding: 0px;
+	width: 100%; }

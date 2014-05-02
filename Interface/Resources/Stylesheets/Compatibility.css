@@ -56,3 +56,24 @@ body > main > div > nav > ul {
 body > main > div > nav > ul > li {
 	-moz-appearance: none;
 	-webkit-appearance: none; }
+
+body > main > div > div > section > form > input {
+	-moz-appearance: none;
+	-webkit-appearance: none; }
+
+body > main > div > div > section > form > input:focus { outline: none; }
+
+body > main > div > div > section > form > input:-ms-input-placeholder {
+	color: inherit;
+	font-variant: small-caps;
+	opacity: 0.75; }
+
+body > main > div > div > section > form > input::-moz-placeholder {
+	color: inherit;
+	font-variant: small-caps;
+	opacity: 0.75; }
+
+body > main > div > div > section > form > input::-webkit-input-placeholder {
+	color: inherit;
+	font-variant: small-caps;
+	opacity: 0.75; }
